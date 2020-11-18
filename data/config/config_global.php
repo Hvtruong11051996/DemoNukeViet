@@ -5,7 +5,7 @@
  * @Author VINADES.,JSC <contact@vinades.vn>
  * @Copyright (C) 2020 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
- * @Createdate Thu, 12 Nov 2020 11:12:22 GMT
+ * @Createdate Wed, 18 Nov 2020 04:21:52 GMT
  */
 
 if (!defined('NV_MAINFILE')) {
@@ -74,7 +74,7 @@ $global_config['login_time_ban']=30;
 $global_config['login_time_tracking']=5;
 $global_config['max_requests_300']=150;
 $global_config['max_requests_60']=40;
-$global_config['my_domains']='localhost';
+$global_config['my_domains']='shop_dienthoai.my,localhost';
 $global_config['notification_active']=1;
 $global_config['notification_autodel']=15;
 $global_config['nv_auto_resize']=1;
@@ -97,7 +97,7 @@ $global_config['site_lang']='vi';
 $global_config['site_timezone']='byCountry';
 $global_config['spadmin_add_admin']=1;
 $global_config['str_referer_blocker']=0;
-$global_config['timestamp']=1605179542;
+$global_config['timestamp']=1605673312;
 $global_config['two_step_verification']=0;
 $global_config['upload_alt_require']=1;
 $global_config['upload_auto_alt']=1;
