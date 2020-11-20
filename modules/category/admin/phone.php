@@ -7,6 +7,7 @@
  * @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
  * @Createdate Sat, 31 Oct 2020 02:20:33 GMT
  */
+include "connect.php";
 
 if (!defined('NV_IS_FILE_ADMIN')) {
     die('Stop!!!');
@@ -30,6 +31,17 @@ $xtpl->assign('OP', $op);
 
 //-------------------------------
 // Viết code xuất ra site vào đây
+
+foreach ($products as $products) {
+    $products['cate'] = !empty($arr_category[$products['category_id']]) ? $arr_category[$products['category_id']]['name'] : '';
+    $products['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
+        '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=create_phone&amp;id=' . $products['product_id'];
+    // Sử dụng assign, gán giá trị $array cho DATA
+    $xtpl->assign('PD', $products);
+    $xtpl->parse('main.products');
+}
+
+
 //-------------------------------
 
 $xtpl->parse('main');

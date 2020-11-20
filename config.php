@@ -14,8 +14,8 @@ if (!defined('NV_MAINFILE')) {
 
 $db_config['dbhost'] = '127.0.0.1';
 $db_config['dbport'] = '';
-$db_config['dbname'] = 'nukeviet4';
-$db_config['dbsystem'] = 'nukeviet4';
+$db_config['dbname'] = 'shop_dienthoai';
+$db_config['dbsystem'] = 'shop_dienthoai';
 $db_config['dbuname'] = 'root';
 $db_config['dbpass'] = '';
 $db_config['dbtype'] = 'mysql';
@@ -27,7 +27,7 @@ $db_config['prefix'] = 'nv4';
 $global_config['site_domain'] = '';
 $global_config['name_show'] = 0;
 $global_config['idsite'] = 0;
-$global_config['sitekey'] = 'edecfbb8d1a6ec34e30026b836052e51';// Do not change sitekey!
+$global_config['sitekey'] = 'edecfbb8d1a6ec34e30026b836052e51'; // Do not change sitekey!
 $global_config['hashprefix'] = '{SSHA512}';
 $global_config['cached'] = 'files';
 $global_config['session_handler'] = 'files';
