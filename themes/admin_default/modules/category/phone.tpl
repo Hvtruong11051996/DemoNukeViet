@@ -27,7 +27,7 @@
                 <td class="text-center">{PD.cate}</td>
                 <td class="text-center text-nowrap">
                     <a href="{PD.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{PD.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>

@@ -19,7 +19,7 @@ $page_title = $lang_module['create_phone'];
 // Viết code xử lý chung vào đây
 $post = [];
 $error = [];
-$post['id'] = $nv_Request->get_int('id', 'post,get', 0);
+$post['product_id'] = $nv_Request->get_int('product_id', 'post,get', 0);
 $post['name'] = $nv_Request->get_title('name', 'post', '');
 $post['slug'] = $nv_Request->get_title('slug', 'post', '');
 $post['description'] = $nv_Request->get_textarea('description', 'post', '', NV_ALLOWED_HTML_TAGS);
@@ -38,10 +38,10 @@ if (!empty($post['submit'])) {
     }
 
     if (empty($error)) {
-        if ($post['id'] > 0) {
+        if ($post['product_id'] > 0) {
             // update
             $sql = "UPDATE `shop_products` SET
-            name=:name,slug=:slug,description=:description,price=:price,sell_price=:sell_price,category_id=:category_id,updatetime=:updatetime WHERE id = " . $post['id'];
+            name=:name,slug=:slug,description=:description,price=:price,sell_price=:sell_price,category_id=:category_id,updatetime=:updatetime WHERE product_id = " . $post['product_id'];
             $s = $db->prepare($sql);
             $s->bindValue('updatetime', 0);
         } else {
@@ -62,13 +62,22 @@ if (!empty($post['submit'])) {
         $s->bindParam('description', $post['description']);
         $exe = $s->execute();
 
-        if ($post['id'] > 0) {
+        if ($post['product_id'] > 0) {
             $error[] = "Update ok!";
         } else {
             $error[] = "Insert ok !";
         }
     }
 }
+
+// ============= Edit dữ liệu ============ //
+if ($post['product_id'] > 0) {
+
+    $sql = "SELECT * FROM `shop_products` WHERE product_id = "  . $post['product_id'];
+    $post =  $db->query($sql)->fetch();
+}
+
+// ====================================== //
 
 
 
