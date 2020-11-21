@@ -18,6 +18,12 @@
             <!-- BEGIN: products -->
             <tr>
                 <td class="text-center">
+                    <select onchange="nv_change_weight({PD.product_id})" class="form-control weight_{PD.product_id}"
+                        name="weight" id="">
+                        <!-- BEGIN: stt -->
+                        <option value="{J}" {J_SELECT}>{PD.stt}</option>
+                        <!-- END: stt -->
+                    </select>
                 </td>
                 <td class="text-center"><strong>{PD.name}</strong></td>
                 <td class="text-center">{PD.slug}</td>
@@ -35,10 +41,21 @@
         </tbody>
     </table>
     <div style="text-align: center;">
-
+        {GP}
     </div>
 
 </form>
+<script>
+$(document).ready(function() {
+    $('.delete').click(function() {
+        if (confirm("Bạn có chắc chắn muốn xóa?")) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 
+});
+</script>
 
 <!-- END: main -->

@@ -25,4 +25,5 @@ $lang_module['category'] = 'Danh mục sản phẩm';
 $lang_module['phone'] = 'Điện thoại';
 $lang_module['accessories'] = 'Phụ kiện điện thoại';
 $lang_module['create_phone'] = 'Thêm điện thoại';
-$lang_module['create_accessories'] = 'Thêm điện thoại';
+$lang_module['create_accessories'] = 'Thêm phụ kiện';
+$lang_module['create_category'] = 'Thêm danh mục';

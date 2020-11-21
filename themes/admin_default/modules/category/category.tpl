@@ -15,25 +15,20 @@
         </tr>
         </thead>
         <tbody>
-            <!-- BEGIN: list_phone -->
+            <!-- BEGIN: category -->
             <tr>
                 <td class="text-center">
-                    <select onchange="" class="form-control" name="weight" id="">
-                        <!-- BEGIN: stt_phone -->
-                        <option value=""></option>
-                        <!-- END: stt_phone -->
-                    </select>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="text-center"><strong>{CG.name}</strong></td>
+                <td class="text-center"></td>
+                <td class="text-center">{CG.description}</td>
                 <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{CG.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{CG.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>
-            <!-- END: list_phone -->
+            <!-- END: category -->
         </tbody>
     </table>
 
@@ -64,8 +59,8 @@
                 <td></td>
                 <td></td>
                 <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{CG.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{CG.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>
@@ -77,6 +72,18 @@
     </div>
 
 </form>
+<script>
+$(document).ready(function() {
+    $('.delete').click(function() {
+        if (confirm("Bạn có chắc chắn muốn xóa?")) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+});
+</script>
 
 
 <!-- END: main -->

@@ -18,7 +18,7 @@ if (!nv_function_exists('nv_copyright_info')) {
      *
      * @return
      */
-    function nv_copyright_info_config()
+    function nv_global_test_config()
     {
         global $lang_global, $data_block;
 
@@ -51,7 +51,7 @@ if (!nv_function_exists('nv_copyright_info')) {
      *
      * @return
      */
-    function nv_copyright_info_submit()
+    function nv_global_test_submit()
     {
         global $nv_Request;
 
@@ -71,7 +71,7 @@ if (!nv_function_exists('nv_copyright_info')) {
      * @param mixed $block_config
      * @return
      */
-    function nv_copyright_info($block_config)
+    function nv_global_test($block_config)
     {
         global $global_config, $lang_global;
 
@@ -117,5 +117,5 @@ if (!nv_function_exists('nv_copyright_info')) {
 }
 
 if (defined('NV_SYSTEM')) {
-    $content = nv_copyright_info($block_config);
+    $content = nv_global_test($block_config);
 }
