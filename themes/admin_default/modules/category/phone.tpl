@@ -21,7 +21,7 @@
                     <select onchange="nv_change_weight({PD.product_id})" class="form-control weight_{PD.product_id}"
                         name="weight" id="">
                         <!-- BEGIN: stt -->
-                        <option value="{J}" {J_SELECT}>{PD.stt}</option>
+                        <option value="{J}" {J_SELECT}>{J}</option>
                         <!-- END: stt -->
                     </select>
                 </td>
@@ -46,6 +46,24 @@
 
 </form>
 <script>
+// ==== Thay đổi số thứ tự ===== //
+function nv_change_weight({
+    product_id
+}) {
+    var new_weight = $('.weight_' + product_id).val();
+    $.ajax({
+        url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
+            '=phone&change_weight=2&product_id=' + product_id + '&new_weight=' + new_weight,
+        success: function(result) {
+            if (result != "Error") {
+                location.reload();
+            }
+        }
+    })
+}
+// ================================ //
+
+// ==== Xóa dữ liệu  ===== //
 $(document).ready(function() {
     $('.delete').click(function() {
         if (confirm("Bạn có chắc chắn muốn xóa?")) {
@@ -56,6 +74,7 @@ $(document).ready(function() {
     });
 
 });
+// ================================ //
 </script>
 
 <!-- END: main -->

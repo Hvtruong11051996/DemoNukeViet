@@ -32,7 +32,7 @@ if ($nv_Request->isset_request("action", "post,get")) {
 
 // ============== Phân trang Dữ Liệu ================= //
 
-$perpage = 5;
+$perpage = 9;
 $page = $nv_Request->get_int('page', 'get', 1);
 
 
@@ -41,6 +41,8 @@ $db->sqlreset()
     ->from('shop_products');
 $sql = $db->sql();
 $total = $db->query($sql)->fetchColumn();
+// print_r($total);
+// die();
 
 $db->select('*')
     ->order("product_id ASC")
@@ -53,10 +55,6 @@ $result = $db->query($sql);
 
 while ($row = $result->fetch()) {
     $array_row[$row['product_id']] = $row;
-    // echo "<pre>";
-    // print_r($row);
-    // die();
-    // echo "</pre>";
 }
 
 
@@ -69,6 +67,7 @@ while ($row = $result->fetch()) {
 if ($nv_Request->isset_request("change_weight", "post,get")) {
     $product_id = $nv_Request->get_int('product_id', 'post,get', 0);
     $new_weight = $nv_Request->get_int('new_weight', 'post,get', 0);
+
     if ($product_id > 0 and $new_weight > 0) {
         $sql = "SELECT product_id,weight FROM shop_products WHERE product_id != " . $product_id;
         $result = $db->query($sql);
@@ -105,19 +104,19 @@ $xtpl->assign('OP', $op);
 //-------------------------------
 // Viết code xuất ra site vào đây
 
-// $i = ($page - 1) * $perpage;
-$i = 1;
+$i = ($page - 1) * $perpage;
 
-foreach ($products as $products) {
+
+foreach ($array_row as $products) {
     $products['stt'] = $i;
-    // $products['stt'] = $i + 1;
+    $products['stt'] = $i + 1;
 
-    // for ($j = 1; $j < 10; $j++) {
-    //     $xtpl->assign('J', $j);
-    //     $xtpl->assign('J_SELECT', $j == $products['weight'] ? 'selected="selected"' : '');
+    for ($j = 1; $j <= $total; $j++) {
+        $xtpl->assign('J', $j);
+        $xtpl->assign('J_SELECT', $j == $products['weight'] ? 'selected="selected"' : '');
 
-    //     $xtpl->parse('main.products.stt');
-    // }
+        $xtpl->parse('main.products.stt');
+    }
 
     $products['cate'] = !empty($arr_category[$products['category_id']]) ? $arr_category[$products['category_id']]['name'] : '';
     $products['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
@@ -126,15 +125,22 @@ foreach ($products as $products) {
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=phone&amp;product_id=' . $products['product_id'] . '&action=delete&checksess=' . md5($products['product_id'] . NV_CHECK_SESSION);
     $xtpl->assign('PD', $products);
     $xtpl->parse('main.products');
-    $xtpl->parse('main.products.stt');
     $i++;
 }
 
 // ========Phân Trang ======== //
+
 $base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
     '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=phone';
 $generate_page = nv_generate_page($base_url, $total, $perpage, $page);
-$xtpl->assign('GP', $generate_page);
+
+
+//Nếu số bản ghi > 5 thì hiển thị khối phân trang
+if ($total > 5) {
+    $xtpl->assign('GP', $generate_page);
+}
+/* end code xuất ra site */
+
 
 // ========Phân Trang ======== //
 

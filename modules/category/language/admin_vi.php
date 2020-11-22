@@ -27,3 +27,5 @@ $lang_module['accessories'] = 'Phụ kiện điện thoại';
 $lang_module['create_phone'] = 'Thêm điện thoại';
 $lang_module['create_accessories'] = 'Thêm phụ kiện';
 $lang_module['create_category'] = 'Thêm danh mục';
+$lang_module['name'] = 'Bạn cần nhập tên điện thoại !';
+$lang_module['slug'] = 'Bạn cần nhập Slug';
