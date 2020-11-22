@@ -7,7 +7,7 @@
     </div>
     <table style="margin-top: 30px;" class="table table-striped table-bordered table-hover">
         <tr class="text-center">
-            <th class="text-nowrap text-center">Thứ tự</th>
+            <th class="text-nowrap text-center" style="width: 100px;">Thứ tự</th>
             <th class="text-nowrap text-center">Tên hãng</th>
             <th class="text-nowrap text-center">Ảnh</th>
             <th class="text-nowrap text-center">Mô tả</th>
@@ -18,6 +18,12 @@
             <!-- BEGIN: category -->
             <tr>
                 <td class="text-center">
+                    <select onchange="nv_change_weight({CG.id})" class="form-control weight_{CG.id}" name="weight"
+                        id="">
+                        <!-- BEGIN: stt -->
+                        <option value="{J}" {J_SELECT}>{J}</option>
+                        <!-- END: stt -->
+                    </select>
                 </td>
                 <td class="text-center"><strong>{CG.name}</strong></td>
                 <td class="text-center"></td>
@@ -31,6 +37,10 @@
             <!-- END: category -->
         </tbody>
     </table>
+    <div style="text-align: center;">
+        {GP}
+    </div>
+
 
 
     <div style="color: red;">
@@ -67,12 +77,25 @@
             <!-- END: list_accessories -->
         </tbody>
     </table>
-    <div style="text-align: center;">
 
-    </div>
 
 </form>
 <script>
+// ==== Thay đổi số thứ tự ===== //
+function nv_change_weight(id) {
+    var new_weight = $('.weight_' + id).val();
+    $.ajax({
+        url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
+            '=category&change_weight=2&id=' + id + '&new_weight=' + new_weight,
+        success: function(result) {
+            if (result != "Error") {
+                location.reload();
+            }
+        }
+    })
+}
+// ================================ //
+
 $(document).ready(function() {
     $('.delete').click(function() {
         if (confirm("Bạn có chắc chắn muốn xóa?")) {

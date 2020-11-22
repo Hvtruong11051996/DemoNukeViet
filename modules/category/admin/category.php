@@ -15,7 +15,7 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 $page_title = $lang_module['category'];
 
 //------------------------------
-// Viết code xử lý chung vào đây
+// Viết code xử lý chung vào đây 
 
 // ========= Xóa dữ liệu ========== //
 
@@ -27,6 +27,66 @@ if ($nv_Request->isset_request("action", "post,get")) {
     }
 }
 // =============================== //
+
+// ============== Phân trang Dữ Liệu ================= //
+
+$perpage = 9;
+$page = $nv_Request->get_int('page', 'get', 1);
+
+
+$db->sqlreset()
+    ->select('COUNT(*)')
+    ->from('shop_category');
+$sql = $db->sql();
+$total = $db->query($sql)->fetchColumn();
+// print_r($total);
+// die();
+
+$db->select('*')
+    ->order("weight ASC")
+    ->limit($perpage)
+    ->offset(($page - 1) * $perpage);
+$sql = $db->sql();
+
+$result = $db->query($sql);
+
+
+while ($row = $result->fetch()) {
+    $array_row[$row['id']] = $row;
+}
+
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
+if ($nv_Request->isset_request("change_weight", "post,get")) {
+    $id = $nv_Request->get_int('id', 'post,get', 0);
+    $new_weight = $nv_Request->get_int('new_weight', 'post,get', 0);
+
+    if ($id > 0 and $new_weight > 0) {
+        $sql = "SELECT id,weight FROM shop_category WHERE id != " . $id;
+        $result = $db->query($sql);
+        $weight = 0;
+        while ($category = $result->fetch()) {
+            ++$weight;
+            if ($weight == $new_weight) {
+                ++$weight;
+            }
+            $exe = $db->query("UPDATE `shop_category` SET weight=" . $weight . " WHERE id=" . $category['id']);
+        }
+        $exe = $db->query("UPDATE `shop_category` SET weight=" . $new_weight . " WHERE id=" . $id);
+    }
+    if ($exe) {
+        die("OK!");
+    }
+    die("Error");
+}
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
+
+
+
+
 
 //------------------------------
 
@@ -43,7 +103,18 @@ $xtpl->assign('OP', $op);
 //-------------------------------
 // Viết code xuất ra site vào đây
 
-foreach ($category as $category) {
+$i = ($page - 1) * $perpage;
+
+foreach ($array_row as $category) {
+    $category['stt'] = $i;
+    $category['stt'] = $i + 1;
+
+    for ($j = 1; $j <= $total; $j++) {
+        $xtpl->assign('J', $j);
+        $xtpl->assign('J_SELECT', $j == $category['weight'] ? 'selected="selected"' : '');
+
+        $xtpl->parse('main.category.stt');
+    }
     // Sử dụng assign, gán giá trị $array cho DATA
     $category['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=create_category&amp;id=' . $category['id'];
@@ -51,8 +122,28 @@ foreach ($category as $category) {
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=category&amp;id=' . $category['id'] . '&action=delete&checksess=' . md5($category['id'] . NV_CHECK_SESSION);
     $xtpl->assign('CG', $category);
     $xtpl->parse('main.category');
+    $i++;
 }
+
+// ========Phân Trang ======== //
+
+$base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
+    '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=category';
+$generate_page = nv_generate_page($base_url, $total, $perpage, $page);
+
+
+//Nếu số bản ghi > 5 thì hiển thị khối phân trang
+if ($total > 5) {
+    $xtpl->assign('GP', $generate_page);
+}
+/* end code xuất ra site */
+
+
+
 //-------------------------------
+
+
+
 
 $xtpl->parse('main');
 $contents = $xtpl->text('main');
