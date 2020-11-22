@@ -45,7 +45,7 @@ $total = $db->query($sql)->fetchColumn();
 // die();
 
 $db->select('*')
-    ->order("product_id ASC")
+    ->order("weight ASC")
     ->limit($perpage)
     ->offset(($page - 1) * $perpage);
 $sql = $db->sql();

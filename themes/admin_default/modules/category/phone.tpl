@@ -47,9 +47,7 @@
 </form>
 <script>
 // ==== Thay đổi số thứ tự ===== //
-function nv_change_weight({
-    product_id
-}) {
+function nv_change_weight(product_id) {
     var new_weight = $('.weight_' + product_id).val();
     $.ajax({
         url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
