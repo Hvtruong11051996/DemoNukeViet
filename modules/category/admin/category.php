@@ -39,8 +39,6 @@ $db->sqlreset()
     ->from('shop_category');
 $sql = $db->sql();
 $total = $db->query($sql)->fetchColumn();
-// print_r($total);
-// die();
 
 $db->select('*')
     ->order("weight ASC")
@@ -125,7 +123,7 @@ foreach ($array_row as $category) {
     $i++;
 }
 
-// ========Phân Trang ======== //
+// ========vPhân Trang ======== //
 
 $base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
     '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=category';

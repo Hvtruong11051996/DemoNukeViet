@@ -94,7 +94,7 @@ function nv_change_weight(id) {
         }
     })
 }
-// ================================ //
+// =============== End ================= //
 
 $(document).ready(function() {
     $('.delete').click(function() {
