@@ -17,6 +17,19 @@ $page_title = $lang_module['accessories'];
 
 //------------------------------
 // Viết code xử lý chung vào đây
+
+// ========= Xóa dữ liệu ========== //
+
+if ($nv_Request->isset_request("action", "post,get")) {
+    $id_delete = $nv_Request->get_int('id', 'post,get', 0);
+    $checksess = $nv_Request->get_title('checksess', 'post,get', 0);
+    if ($id_delete > 0 and $checksess == md5($id_delete . NV_CHECK_SESSION)) {
+        $db->query("DELETE FROM `shop_accessories` WHERE id=" . $id_delete);
+    }
+}
+// =============================== //
+
+
 //------------------------------
 
 $xtpl = new XTemplate('accessories.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
