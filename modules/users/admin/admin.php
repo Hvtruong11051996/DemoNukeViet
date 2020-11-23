@@ -34,23 +34,25 @@ $xtpl->assign('POST', $post);
 //-------------------------------
 // Viết code xuất ra site vào đây
 //-------------------------------
-//
+// 
 
-include ("connect.php");
-
-// while ($admin = $result->fetch()){
-// //    print_r($admin);die; 
+$sql = "SELECT `id`, `name`, `password`, `activated` FROM `shop_admin` ORDER BY name ASC";
+$result = $db->query($sql);
+$array_admin = [];
+while ($admin = $result->fetch()){
+//   print_r($admin);die; 
 //  $array_admin= $admin['id'] = $admin;
-// }
+}
 
 $xtpl->parse('main');
 $contents = $xtpl->text('main');
 
 
-foreach ($array_admin as  $admin) {
-    // var_dump($admin);die;
-    $xtpl->assign('ADMIN', $admin);
-    
+foreach ($array_admin as $key=> $admin) {
+    $xtpl->assign('ADMIN', array(
+        "key" => $key,
+        "title"=> $admin
+    ));
     $xtpl->parse('main.admin');
 }
 
