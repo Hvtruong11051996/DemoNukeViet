@@ -4,7 +4,7 @@
     method="post">
     <table class="table table-striped table-bordered table-hover">
         <tr class="text-center">
-            <th class="text-nowrap text-center">Thứ tự</th>
+            <th class="text-nowrap text-center" style="width: 100px;">Thứ tự</th>
             <th class="text-nowrap text-center">Tên phụ kiện</th>
             <th class="text-nowrap text-center">Tên không dấu</th>
             <!-- <th class="text-nowrap text-center">Ảnh</th> -->
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             <!-- BEGIN: accessories  -->
-            <tr>
+            <tr class="text-center">
                 <td class="text-center">
                     <select onchange="" class="form-control weight_{LIST.id}" name="weight" id="">
                         <!-- BEGIN: stt  -->
@@ -23,15 +23,14 @@
                         <!-- END: stt  -->
                     </select>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{PK.name}</td>
+                <td>{PK.slug}</td>
+                <td>{PK.description}</td>
+                <td>{PK.price}</td>
                 <!-- <td></td> -->
-                <td></td>
                 <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{PK.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{PK.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>
