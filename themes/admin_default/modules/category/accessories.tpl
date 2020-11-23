@@ -7,29 +7,27 @@
             <th class="text-nowrap text-center">Thứ tự</th>
             <th class="text-nowrap text-center">Tên phụ kiện</th>
             <th class="text-nowrap text-center">Tên không dấu</th>
-            <th class="text-nowrap text-center">Ảnh</th>
+            <!-- <th class="text-nowrap text-center">Ảnh</th> -->
             <th class="text-nowrap text-center">Mô tả</th>
             <th class="text-nowrap text-center">Giá</th>
-            <th class="text-nowrap text-center">Khuyến mãi</th>
             <th class="text-center text-nowrap">Chức năng</th>
         </tr>
         </thead>
         <tbody>
-            <!-- BEGIN: list_accessories  -->
+            <!-- BEGIN: accessories  -->
             <tr>
                 <td class="text-center">
                     <select onchange="" class="form-control weight_{LIST.id}" name="weight" id="">
-                        <!-- BEGIN: stt_accessories  -->
+                        <!-- BEGIN: stt  -->
                         <option value=""></option>
-                        <!-- END: stt_accessories  -->
+                        <!-- END: stt  -->
                     </select>
                 </td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <!-- <td></td> -->
                 <td></td>
                 <td class="text-center text-nowrap">
                     <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
@@ -37,7 +35,7 @@
                         Xóa</a>
                 </td>
             </tr>
-            <!-- END: list_accessories  -->
+            <!-- END: list  -->
         </tbody>
     </table>
     <div style="text-align: center;">
