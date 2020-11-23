@@ -4,7 +4,7 @@
     method="post">
     <table class="table table-striped table-bordered table-hover">
         <tr class="text-center">
-            <th class="text-nowrap text-center">Thứ tự</th>
+            <th class="text-nowrap text-center" style="width: 100px;">Thứ tự</th>
             <th class="text-nowrap text-center">Tên điện thoại</th>
             <th class="text-nowrap text-center">Tên không dấu</th>
             <th class="text-nowrap text-center">Mô tả</th>
