@@ -53,11 +53,36 @@ $result = $db->query($sql);
 while ($row = $result->fetch()) {
     $array_row[$row['id']] = $row;
 }
-
-
-
 // ================================================== //
 
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
+if ($nv_Request->isset_request("change_weight", "post,get")) {
+    $id = $nv_Request->get_int('id', 'post,get', 0);
+    $new_weight = $nv_Request->get_int('new_weight', 'post,get', 0);
+
+    if ($id > 0 and $new_weight > 0) {
+        $sql = "SELECT id,weight FROM shop_accessories WHERE id != " . $id;
+        $result = $db->query($sql);
+        $weight = 0;
+        while ($accessories = $result->fetch()) {
+            ++$weight;
+            if ($weight == $new_weight) {
+                ++$weight;
+            }
+            $exe = $db->query("UPDATE `shop_accessories` SET weight=" . $weight . " WHERE id=" . $accessories['id']);
+        }
+        $exe = $db->query("UPDATE `shop_accessories` SET weight=" . $new_weight . " WHERE id=" . $id);
+    }
+    if ($exe) {
+        die("OK!");
+    }
+    die("Error");
+}
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
 
 //------------------------------
 
@@ -74,7 +99,18 @@ $xtpl->assign('OP', $op);
 //-------------------------------
 // Viết code xuất ra site vào đây
 
+$i = ($page - 1) * $perpage;
+
 foreach ($array_row as $accessories) {
+    $accessories['stt'] = $i;
+    $accessories['stt'] = $i + 1;
+
+    for ($j = 1; $j <= $total; $j++) {
+        $xtpl->assign('J', $j);
+        $xtpl->assign('J_SELECT', $j == $accessories['weight'] ? 'selected="selected"' : '');
+
+        $xtpl->parse('main.accessories.stt');
+    }
 
     $accessories['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=create_accessories&amp;id=' . $accessories['id'];
@@ -82,6 +118,7 @@ foreach ($array_row as $accessories) {
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=accessories&amp;id=' . $accessories['id'] . '&action=delete&checksess=' . md5($accessories['id'] . NV_CHECK_SESSION);
     $xtpl->assign('PK', $accessories);
     $xtpl->parse('main.accessories');
+    $i++;
 }
 
 // ========Phân Trang ======== //
@@ -99,6 +136,7 @@ if ($total > 5) {
 
 
 // ========Phân Trang ======== //
+
 
 //-------------------------------
 
