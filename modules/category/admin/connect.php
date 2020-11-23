@@ -12,3 +12,5 @@ while ($categorys = $category->fetch_array()) {
 
 $sql = "SELECT * FROM shop_products";
 $products = mysqli_query($conn, $sql);
+$sql = "SELECT * FROM shop_admin";
+$array_admin = mysqli_query($conn, $sql);

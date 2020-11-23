@@ -14,6 +14,8 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 $page_title = $lang_module['admin'];
 
+$post = [];
+
 //------------------------------
 // Viết code xử lý chung vào đây
 //------------------------------
@@ -27,13 +29,30 @@ $xtpl->assign('NV_NAME_VARIABLE', NV_NAME_VARIABLE);
 $xtpl->assign('NV_OP_VARIABLE', NV_OP_VARIABLE);
 $xtpl->assign('MODULE_NAME', $module_name);
 $xtpl->assign('OP', $op);
+$xtpl->assign('POST', $post);  
 
 //-------------------------------
 // Viết code xuất ra site vào đây
 //-------------------------------
+//
+
+include ("connect.php");
+
+// while ($admin = $result->fetch()){
+// //    print_r($admin);die; 
+//  $array_admin= $admin['id'] = $admin;
+// }
 
 $xtpl->parse('main');
 $contents = $xtpl->text('main');
+
+
+foreach ($array_admin as  $admin) {
+    // var_dump($admin);die;
+    $xtpl->assign('ADMIN', $admin);
+    
+    $xtpl->parse('main.admin');
+}
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_admin_theme($contents);
