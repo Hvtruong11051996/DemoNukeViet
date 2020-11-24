@@ -12,4 +12,5 @@ if (!defined('NV_ADMIN')) {
     die('Stop!!!');
 }
 $submenu['order'] = $lang_module['order'];
+$submenu['edit_order'] = $lang_module['edit_order'];
 $submenu['order_detail'] = $lang_module['order_detail'];

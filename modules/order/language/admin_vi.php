@@ -23,3 +23,4 @@ $lang_module['config'] = 'Cấu hình';
 $lang_module['save'] = 'Lưu lại';
 $lang_module['order'] = 'Danh sách đơn hàng';
 $lang_module['order_detail'] = 'Danh sách hóa đơn';
+$lang_module['edit_order'] = 'Sửa hóa đơn';

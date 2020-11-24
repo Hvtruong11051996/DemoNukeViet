@@ -106,7 +106,7 @@ foreach ($array_row as $phone_details) {
 
     $phone_details['stt'] = $i;
     $phone_details['stt'] = $i + 1;
-
+ 
     for ($j = 1; $j <= $total; $j++) {
         $xtpl->assign('J', $j);
         $xtpl->assign('J_SELECT', $j == $phone_details['weight'] ? 'selected="selected"' : '');
