@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for=""><strong>Hãng : </strong></label>
             <select name="category_id" id="category" class="form-control">
-                <option value="{POST.category_id}">--- Chọn Hãng điện thoại ---</option>
+                <option value="">--- Chọn Hãng điện thoại ---</option>
                 <!-- BEGIN: category -->
                 <option value="{CG.id}">{CG.name}</option>
                 <!-- END: category -->

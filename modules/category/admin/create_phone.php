@@ -25,7 +25,7 @@ $post['slug'] = $nv_Request->get_title('slug', 'post', '');
 $post['description'] = $nv_Request->get_textarea('description', 'post', '', NV_ALLOWED_HTML_TAGS);
 $post['price'] = $nv_Request->get_title('price', 'post', '');
 $post['sell_price'] = $nv_Request->get_title('sell_price', 'post', '');
-$post['category_id'] = $nv_Request->get_title('category_id', 'post', '');
+$post['category_id'] = $nv_Request->get_int('category_id', 'post', '');
 $post['submit'] = $nv_Request->get_title('submit', 'post', '');
 
 if (!empty($post['submit'])) {
