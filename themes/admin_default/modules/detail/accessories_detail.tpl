@@ -36,10 +36,22 @@
         </tbody>
     </table>
     <div style="text-align: center;">
-
     </div>
-
 </form>
+<script>
+// ==== Xóa dữ liệu  ===== //
+$(document).ready(function() {
+    $('.delete').click(function() {
+        if (confirm("Bạn có chắc chắn muốn xóa?")) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+});
+// ================================ //
+</script>
 
 
 <!-- END: main -->
