@@ -17,6 +17,18 @@ $page_title = $lang_module['phone_detail'];
 
 //------------------------------
 // Viết code xử lý chung vào đây
+
+// ========= Xóa dữ liệu ========== //
+
+if ($nv_Request->isset_request("action", "post,get")) {
+    $id_delete = $nv_Request->get_int('id', 'post,get', 0);
+    $checksess = $nv_Request->get_title('checksess', 'post,get', 0);
+    if ($id_delete > 0 and $checksess == md5($id_delete . NV_CHECK_SESSION)) {
+        $db->query("DELETE FROM `shop_phone_details` WHERE id=" . $id_delete);
+    }
+}
+// =============================== //
+
 //------------------------------
 
 $xtpl = new XTemplate('phone_detail.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
@@ -38,7 +50,7 @@ foreach ($phone_details as $phone_details) {
     $phone_details['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=create_phone&amp;id=' . $phone_details['id'];
     $phone_details['url_delete'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
-        '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=phone&amp;id=' . $phone_details['id'] . '&action=delete&checksess=' . md5($phone_details['id'] . NV_CHECK_SESSION);
+        '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=phone_detail&amp;id=' . $phone_details['id'] . '&action=delete&checksess=' . md5($phone_details['id'] . NV_CHECK_SESSION);
     $xtpl->assign('DT', $phone_details);
     $xtpl->parse('main.phone_details');
 }
