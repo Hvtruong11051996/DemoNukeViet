@@ -45,7 +45,7 @@ if (!empty($post['submit'])) {
             //  Insert
             $sql = "INSERT INTO `shop_phone_details`
             (`product_id`,`screen`,`operating`,`front_camera`,`rear_camera`,`CPU`, `RAM`, `internal_memory`, `SIM`, `battery_capacity`,`weight`) 
-            VALUES ( :product_id,:screen, :operating, :front_camera, :rear_camera, :CPU, :RAM, :internal_memory, :SIM, :battery_capacity, :weight)";
+            VALUES ( :product_id, :screen, :operating, :front_camera, :rear_camera, :CPU, :RAM, :internal_memory, :SIM, :battery_capacity, :weight)";
             $s = $db->prepare($sql);
             $s->bindValue('weight', 1);
         }

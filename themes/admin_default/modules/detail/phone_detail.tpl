@@ -7,7 +7,6 @@
             <th class="text-nowrap text-center">Thứ tự</th>
             <th class="text-nowrap text-center">Tên Điên thoại</th>
             <th class="text-nowrap text-center">Màn hình</th>
-            <th class="text-nowrap text-center">Ảnh</th>
             <th class="text-nowrap text-center">Hệ điều hành</th>
             <th class="text-nowrap text-center">Camera trước</th>
             <th class="text-nowrap text-center">Camera sau</th>
@@ -20,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-            <!-- BEGIN: list_phone -->
+            <!-- BEGIN: phone_details -->
             <tr>
                 <td class="text-center">
                     <select onchange="" class="form-control" name="weight" id="">
@@ -29,24 +28,23 @@
                         <!-- END: stt_phone -->
                     </select>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{DT.product_id}</td>
+                <td>{DT.screen}</td>
+                <td>{DT.operating}</td>
+                <td>{DT.front_camera}</td>
+                <td>{DT.rear_camera}</td>
+                <td>{DT.CPU}</td>
+                <td>{DT.RAM}</td>
+                <td>{DT.internal_memory}</td>
+                <td>{DT.SIM}</td>
+                <td>{DT.battery_capacity}</td>
                 <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{DT.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{DT.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>
-            <!-- END: list_phone -->
+            <!-- END: phone_details -->
         </tbody>
     </table>
 
