@@ -3,7 +3,7 @@
     "version": "4.4.01",
     "type": "project",
     "description": "NukeViet is the first opensource CMS in Vietnam.",
-    "keywords": ["cms","nukeviet", "nukeviet4", "portal"],
+    "keywords": ["cms","nukeviet", "shop_dienthoai", "portal"],
     "homepage": "https://github.com/nukeviet/nukeviet",
     "license": "GPL-2.0+",
     "authors": [
