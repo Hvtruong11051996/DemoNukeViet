@@ -40,11 +40,11 @@
         </div>
         <div class="form-group">
             <label for=""><strong>CPU : </strong></label>
-            <input type="text" class="form-control" name="CPU" value="{POST.CPU}">
+            <input type="text" class="form-control" name="cpu" value="{POST.cpu}">
         </div>
         <div class="form-group">
             <label for=""><strong>RAM : </strong> </label>
-            <input type="text" class="form-control" name="RAM" value="{POST.RAM}">
+            <input type="text" class="form-control" name="ram" value="{POST.ram}">
         </div>
         <div class="form-group">
             <label for=""><strong>Thẻ nhớ : </strong></label>
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for=""><strong>SIM : </strong></label>
-            <input type="text" class="form-control" name="SIM" value="{POST.SIM}">
+            <input type="text" class="form-control" name="sim" value="{POST.sim}">
         </div>
         <div class="form-group">
             <label for=""><strong>Dung lượng pin : </strong></label>

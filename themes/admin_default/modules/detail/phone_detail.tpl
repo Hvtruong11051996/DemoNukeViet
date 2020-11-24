@@ -33,10 +33,10 @@
                 <td>{DT.operating}</td>
                 <td>{DT.front_camera}</td>
                 <td>{DT.rear_camera}</td>
-                <td>{DT.CPU}</td>
-                <td>{DT.RAM}</td>
+                <td>{DT.cpu}</td>
+                <td>{DT.ram}</td>
                 <td>{DT.internal_memory}</td>
-                <td>{DT.SIM}</td>
+                <td>{DT.sim}</td>
                 <td>{DT.battery_capacity}</td>
                 <td class="text-center text-nowrap">
                     <a href="{DT.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
@@ -47,7 +47,9 @@
             <!-- END: phone_details -->
         </tbody>
     </table>
-
+    <div style="text-align: center;">
+        {GP}
+    </div>
 </form>
 <script>
 // ==== Xóa dữ liệu  ===== //

@@ -25,10 +25,10 @@ $post['screen'] = $nv_Request->get_title('screen', 'post', '');
 $post['operating'] = $nv_Request->get_title('operating', 'post', '');
 $post['front_camera'] = $nv_Request->get_title('front_camera', 'post', '');
 $post['rear_camera'] = $nv_Request->get_title('rear_camera', 'post', '');
-$post['CPU'] = $nv_Request->get_title('CPU', 'post', '');
-$post['RAM'] = $nv_Request->get_title('RAM', 'post', '');
+$post['cpu'] = $nv_Request->get_title('cpu', 'post', '');
+$post['ram'] = $nv_Request->get_title('ram', 'post', '');
 $post['internal_memory'] = $nv_Request->get_title('internal_memory', 'post', '');
-$post['SIM'] = $nv_Request->get_title('SIM', 'post', '');
+$post['sim'] = $nv_Request->get_title('sim', 'post', '');
 $post['battery_capacity'] = $nv_Request->get_title('battery_capacity', 'post', '');
 $post['submit'] = $nv_Request->get_title('submit', 'post', '');
 
@@ -39,13 +39,13 @@ if (!empty($post['submit'])) {
             // update
             $sql = "UPDATE `shop_phone_details` SET
             product_id=:product_id,screen=:screen,operating=:operating,front_camera=:front_camera,rear_camera=:rear_camera,
-            CPU=:CPU,RAM=:RAM,internal_memory=:internal_memory,SIM=:SIM,battery_capacity=:battery_capacity WHERE id = " . $post['id'];
+            cpu=:cpu,ram=:ram,internal_memory=:internal_memory,sim=:sim,battery_capacity=:battery_capacity WHERE id = " . $post['id'];
             $s = $db->prepare($sql);
         } else {
             //  Insert
             $sql = "INSERT INTO `shop_phone_details`
-            (`product_id`,`screen`,`operating`,`front_camera`,`rear_camera`,`CPU`, `RAM`, `internal_memory`, `SIM`, `battery_capacity`,`weight`) 
-            VALUES ( :product_id, :screen, :operating, :front_camera, :rear_camera, :CPU, :RAM, :internal_memory, :SIM, :battery_capacity, :weight)";
+            (`product_id`,`screen`,`operating`,`front_camera`,`rear_camera`,`cpu`, `ram`, `internal_memory`, `sim`, `battery_capacity`,`weight`) 
+            VALUES ( :product_id, :screen, :operating, :front_camera, :rear_camera, :cpu, :ram, :internal_memory, :sim, :battery_capacity, :weight)";
             $s = $db->prepare($sql);
             $s->bindValue('weight', 1);
         }
@@ -54,10 +54,10 @@ if (!empty($post['submit'])) {
         $s->bindParam('operating', $post['operating']);
         $s->bindParam('front_camera', $post['front_camera']);
         $s->bindParam('rear_camera', $post['rear_camera']);
-        $s->bindParam('CPU', $post['CPU']);
-        $s->bindParam('RAM', $post['RAM']);
+        $s->bindParam('cpu', $post['cpu']);
+        $s->bindParam('ram', $post['ram']);
         $s->bindParam('internal_memory', $post['internal_memory']);
-        $s->bindParam('SIM', $post['SIM']);
+        $s->bindParam('sim', $post['sim']);
         $s->bindParam('battery_capacity', $post['battery_capacity']);
         $exe = $s->execute();
 
