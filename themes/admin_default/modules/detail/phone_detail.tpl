@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             <!-- BEGIN: phone_details -->
-            <tr>
+            <tr class="text-center">
                 <td class="text-center">
                     <select onchange="nv_change_weight({DT.id})" class="form-control weight_{DT.id}" name="weight"
                         id="">

@@ -7,6 +7,7 @@
  * @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
  * @Createdate Sat, 31 Oct 2020 02:20:33 GMT
  */
+include "connect.php";
 
 if (!defined('NV_IS_FILE_ADMIN')) {
     die('Stop!!!');
@@ -20,7 +21,7 @@ $page_title = $lang_module['create_accessories'];
 $post = [];
 $error = [];
 $post['id'] = $nv_Request->get_int('id', 'post,get', 0);
-$post['accessories_id'] = $nv_Request->get_title('accessories_id', 'post', '');
+$post['accessories_id'] = $nv_Request->get_int('accessories_id', 'post', '');
 $post['slug'] = $nv_Request->get_title('slug', 'post', '');
 $post['description'] = $nv_Request->get_textarea('description', 'post', '', NV_ALLOWED_HTML_TAGS);
 $post['submit'] = $nv_Request->get_title('submit', 'post', '');
@@ -78,6 +79,13 @@ $xtpl->assign('POST', $post);
 
 //-------------------------------
 // Viết code xuất ra site vào đây
+
+foreach ($accessories as $accessories) {
+    // Sử dụng assign, gán giá trị $array cho DATA
+    $xtpl->assign('PD', $accessories);
+    $xtpl->parse('main.accessories');
+}
+
 //-------------------------------
 
 if (!empty($error)) {

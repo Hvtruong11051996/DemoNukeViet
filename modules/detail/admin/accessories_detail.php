@@ -7,6 +7,7 @@
  * @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
  * @Createdate Sat, 31 Oct 2020 02:20:33 GMT
  */
+include "connect.php";
 
 if (!defined('NV_IS_FILE_ADMIN')) {
     die('Stop!!!');
@@ -30,6 +31,19 @@ $xtpl->assign('OP', $op);
 
 //-------------------------------
 // Viết code xuất ra site vào đây
+
+
+foreach ($accessories_detail as $accessories_detail) {
+
+    $accessories_detail['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
+        '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=create_accessories&amp;id=' . $accessories_detail['id'];
+    $accessories_detail['url_delete'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
+        '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=accessories_detail&amp;id=' . $accessories_detail['id'] . '&action=delete&checksess=' . md5($accessories_detail['id'] . NV_CHECK_SESSION);
+    $xtpl->assign('AD', $accessories_detail);
+    $xtpl->parse('main.accessories_detail');
+}
+
+
 //-------------------------------
 
 $xtpl->parse('main');
