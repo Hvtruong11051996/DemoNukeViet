@@ -22,10 +22,11 @@
             <!-- BEGIN: phone_details -->
             <tr>
                 <td class="text-center">
-                    <select onchange="" class="form-control" name="weight" id="">
-                        <!-- BEGIN: stt_phone -->
-                        <option value=""></option>
-                        <!-- END: stt_phone -->
+                    <select onchange="nv_change_weight({DT.id})" class="form-control weight_{DT.id}" name="weight"
+                        id="">
+                        <!-- BEGIN: stt -->
+                        <option value="{J}" {J_SELECT}>{J}</option>
+                        <!-- END: stt -->
                     </select>
                 </td>
                 <td>{DT.product_id}</td>
@@ -63,6 +64,21 @@ $(document).ready(function() {
     });
 
 });
+// ================================ //
+
+// ==== Thay đổi số thứ tự ===== //
+function nv_change_weight(id) {
+    var new_weight = $('.weight_' + id).val();
+    $.ajax({
+        url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
+            '=phone_detail&change_weight=2&id=' + id + '&new_weight=' + new_weight,
+        success: function(result) {
+            if (result != "Error") {
+                location.reload();
+            }
+        }
+    })
+}
 // ================================ //
 </script>
 
