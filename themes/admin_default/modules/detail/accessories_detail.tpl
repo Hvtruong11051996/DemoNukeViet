@@ -36,6 +36,7 @@
         </tbody>
     </table>
     <div style="text-align: center;">
+        {GP}
     </div>
 </form>
 <script>
