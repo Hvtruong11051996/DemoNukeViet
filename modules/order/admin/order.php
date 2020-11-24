@@ -29,6 +29,33 @@ if ($nv_Request->isset_request("action", "post,get")) {
 }
 // =============================== //
 
+// ============== Phân trang Dữ Liệu ================= //
+
+$perpage = 9;
+$page = $nv_Request->get_int('page', 'get', 1);
+
+
+$db->sqlreset()
+    ->select('COUNT(*)')
+    ->from('shop_order');
+$sql = $db->sql();
+$total = $db->query($sql)->fetchColumn();
+// print_r($total);
+// die();
+
+$db->select('*')
+    ->order("weight ASC")
+    ->limit($perpage)
+    ->offset(($page - 1) * $perpage);
+$sql = $db->sql();
+
+$result = $db->query($sql);
+
+
+while ($row = $result->fetch()) {
+    $array_row[$row['order_id']] = $row;
+}
+
 //------------------------------
 
 $xtpl = new XTemplate('order.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
@@ -44,7 +71,7 @@ $xtpl->assign('OP', $op);
 //-------------------------------
 // Viết code xuất ra site vào đây
 
-foreach ($order as $order) {
+foreach ($array_row as $order) {
 
     $order['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=edit_order&amp;order_id=' . $order['order_id'];
@@ -54,6 +81,22 @@ foreach ($order as $order) {
     $xtpl->assign('OD', $order);
     $xtpl->parse('main.order');
 }
+
+// ========Phân Trang ======== //
+
+$base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
+    '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=order';
+$generate_page = nv_generate_page($base_url, $total, $perpage, $page);
+
+
+//Nếu số bản ghi > 5 thì hiển thị khối phân trang
+if ($total > 5) {
+    $xtpl->assign('GP', $generate_page);
+}
+/* end code xuất ra site */
+
+
+// ========Phân Trang ======== //
 
 //-------------------------------
 
