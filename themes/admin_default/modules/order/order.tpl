@@ -18,10 +18,11 @@
             <!-- BEGIN: order -->
             <tr class="text-center">
                 <td class="text-center">
-                    <select onchange="" class="form-control weight_{LIST.id}" name="weight" id="">
-                        <!-- BEGIN: stt_phone -->
-                        <option value=""></option>
-                        <!-- END: stt_phone -->
+                    <select onchange="nv_change_weight({OD.order_id})" class="form-control weight_{OD.order_id}"
+                        name="weight" id="">
+                        <!-- BEGIN: stt -->
+                        <option value="{J}" {J_SELECT}>{J}</option>
+                        <!-- END: stt -->
                     </select>
                 </td>
                 <td>{OD.user_id}</td>
@@ -56,6 +57,21 @@ $(document).ready(function() {
     });
 
 });
+// ================================ //
+
+// ==== Thay đổi số thứ tự ===== //
+function nv_change_weight(order_id) {
+    var new_weight = $('.weight_' + order_id).val();
+    $.ajax({
+        url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
+            '=order&change_weight=2&order_id=' + order_id + '&new_weight=' + new_weight,
+        success: function(result) {
+            if (result != "Error") {
+                location.reload();
+            }
+        }
+    })
+}
 // ================================ //
 </script>
 

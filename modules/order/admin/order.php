@@ -56,6 +56,35 @@ while ($row = $result->fetch()) {
     $array_row[$row['order_id']] = $row;
 }
 
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
+if ($nv_Request->isset_request("change_weight", "post,get")) {
+    $order_id = $nv_Request->get_int('order_id', 'post,get', 0);
+    $new_weight = $nv_Request->get_int('new_weight', 'post,get', 0);
+
+    if ($order_id > 0 and $new_weight > 0) {
+        $sql = "SELECT order_id,weight FROM shop_order WHERE order_id != " . $order_id;
+        $result = $db->query($sql);
+        $weight = 0;
+        while ($order = $result->fetch()) {
+            ++$weight;
+            if ($weight == $new_weight) {
+                ++$weight;
+            }
+            $exe = $db->query("UPDATE `shop_order` SET weight=" . $weight . " WHERE order_id=" . $order['order_id']);
+        }
+        $exe = $db->query("UPDATE `shop_order` SET weight=" . $new_weight . " WHERE order_id=" . $order_id);
+    }
+    if ($exe) {
+        die("OK!");
+    }
+    die("Error");
+}
+// =========================================== //
+// =========== Thay đổi Số thứ tự  ============= //
+// =========================================== //
+
 //------------------------------
 
 $xtpl = new XTemplate('order.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
@@ -71,7 +100,20 @@ $xtpl->assign('OP', $op);
 //-------------------------------
 // Viết code xuất ra site vào đây
 
+$i = ($page - 1) * $perpage;
+
 foreach ($array_row as $order) {
+
+    $order['stt'] = $i;
+    $order['stt'] = $i + 1;
+
+    for ($j = 1; $j <= $total; $j++) {
+        $xtpl->assign('J', $j);
+        $xtpl->assign('J_SELECT', $j == $order['weight'] ? 'selected="selected"' : '');
+
+        $xtpl->parse('main.order.stt');
+    }
+
 
     $order['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE .
         '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=edit_order&amp;order_id=' . $order['order_id'];
@@ -80,6 +122,7 @@ foreach ($array_row as $order) {
 
     $xtpl->assign('OD', $order);
     $xtpl->parse('main.order');
+    $i++;
 }
 
 // ========Phân Trang ======== //
