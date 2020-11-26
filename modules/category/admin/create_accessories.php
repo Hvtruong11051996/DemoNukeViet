@@ -44,11 +44,10 @@ if (!empty($post['submit'])) {
         } else {
             //  Insert
             $sql = "INSERT INTO `shop_accessories`
-            (`name`, `slug`,`description`,`price`, `addtime`,`weight`) 
-            VALUES (:name, :slug, :description, :price, :addtime, :weight)";
+            (`name`, `slug`,`description`,`price`,`weight`) 
+            VALUES (:name, :slug, :description, :price, :weight)";
             $s = $db->prepare($sql);
             $s->bindValue('weight', 1);
-            $s->bindValue('addtime', NV_CURRENTTIME);
         }
         $s->bindParam('name', $post['name']);
         $s->bindParam('slug', $post['slug']);
