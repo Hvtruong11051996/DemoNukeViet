@@ -5,7 +5,11 @@
  * @Author VINADES.,JSC <contact@vinades.vn>
  * @Copyright (C) 2020 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
+<<<<<<< HEAD
  * @Createdate Thu, 26 Nov 2020 08:54:14 GMT
+=======
+ * @Createdate Thu, 26 Nov 2020 09:40:15 GMT
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
  */
 
 if (!defined('NV_MAINFILE')) {
@@ -52,8 +56,13 @@ $global_config['dump_autobackup']=1;
 $global_config['dump_backup_day']=30;
 $global_config['dump_backup_ext']='gz';
 $global_config['dump_interval']=1;
+<<<<<<< HEAD
 $global_config['error_send_email']='webmaster@localhost';
 $global_config['error_set_logs']=1;
+=======
+$global_config['error_send_email']='';
+$global_config['error_set_logs']=0;
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
 $global_config['file_allowed_ext']=['adobe','archives','audio','documents','flash','images','real','video'];
 $global_config['forbid_extensions']=['php','php3','php4','php5','phtml','inc'];
 $global_config['forbid_mimes']=[];
@@ -62,7 +71,11 @@ $global_config['ftp_path']='/';
 $global_config['ftp_port']=21;
 $global_config['ftp_server']='localhost';
 $global_config['ftp_user_name']='';
+<<<<<<< HEAD
 $global_config['ftp_user_pass']='_niI28b23QriF08cBHjIVQ,,';
+=======
+$global_config['ftp_user_pass']='0vKMU8u1VTWhMaU9L5oKCA,,';
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
 $global_config['gfx_chk']=3;
 $global_config['gzip_method']=1;
 $global_config['is_flood_blocker']=1;
@@ -91,13 +104,21 @@ $global_config['rewrite_endurl']='/';
 $global_config['rewrite_exturl']='.html';
 $global_config['rewrite_op_mod']='news';
 $global_config['rewrite_optional']=1;
+<<<<<<< HEAD
 $global_config['session_prefix']='nv4s_o25FNE';
+=======
+$global_config['session_prefix']='nv4s_n89Q5d';
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
 $global_config['site_keywords']='NukeViet, portal, mysql, php';
 $global_config['site_lang']='vi';
 $global_config['site_timezone']='byCountry';
 $global_config['spadmin_add_admin']=1;
 $global_config['str_referer_blocker']=0;
+<<<<<<< HEAD
 $global_config['timestamp']=1606380854;
+=======
+$global_config['timestamp']=1606383615;
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
 $global_config['two_step_verification']=0;
 $global_config['upload_alt_require']=1;
 $global_config['upload_auto_alt']=1;

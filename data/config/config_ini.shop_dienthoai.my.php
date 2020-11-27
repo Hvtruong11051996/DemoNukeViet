@@ -5,7 +5,11 @@
  * @Author VINADES.,JSC <contact@vinades.vn>
  * @Copyright (C) 2020 VINADES.,JSC. All rights reserved
  * @License GNU/GPL version 2 or any later version
+<<<<<<< HEAD
  * @Createdate Thu, 26 Nov 2020 08:51:04 GMT
+=======
+ * @Createdate Wed, 25 Nov 2020 15:53:24 GMT
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
  */
 
 if (!defined('NV_MAINFILE')) {
@@ -38,4 +42,8 @@ ini_set('session.gc_maxlifetime', '3600');
 ini_set('track_errors', '1');
 ini_set('user_agent', 'NV4');
 
+<<<<<<< HEAD
 $iniSaveTime = 1606380664;
+=======
+$iniSaveTime = 1606319604;
+>>>>>>> 2c768180b95175ae0872b671eb6cd39dd314b2e3
