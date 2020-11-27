@@ -89,6 +89,12 @@ if ($nv_Request->isset_request("change_weight", "post,get")) {
 // =========================================== //
 // =========== Thay đổi Số thứ tự  ============= //
 // =========================================== //
+
+// $arr_category = [];
+// while ($categorys = $category->fetch_all()) {
+
+//     $arr_category[$categorys['id']] = $categorys;
+// }
 //------------------------------ //
 
 $xtpl = new XTemplate('phone.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);

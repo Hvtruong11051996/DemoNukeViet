@@ -2,15 +2,11 @@
 <form
     action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}"
     method="post">
-    <div style="color: red;">
-        <h1><strong>Chi tiết cấu hình Điện thoại</strong></h1>
-    </div>
     <table style="margin-top: 30px;" class="table table-striped table-bordered table-hover">
         <tr class="text-center">
             <th class="text-nowrap text-center">Thứ tự</th>
             <th class="text-nowrap text-center">Tên Điên thoại</th>
             <th class="text-nowrap text-center">Màn hình</th>
-            <th class="text-nowrap text-center">Ảnh</th>
             <th class="text-nowrap text-center">Hệ điều hành</th>
             <th class="text-nowrap text-center">Camera trước</th>
             <th class="text-nowrap text-center">Camera sau</th>
@@ -23,74 +19,67 @@
         </tr>
         </thead>
         <tbody>
-            <!-- BEGIN: list_phone -->
+            <!-- BEGIN: phone_details -->
             <tr>
                 <td class="text-center">
-                    <select onchange="" class="form-control" name="weight" id="">
-                        <!-- BEGIN: stt_phone -->
-                        <option value=""></option>
-                        <!-- END: stt_phone -->
+                    <select onchange="nv_change_weight({DT.id})" class="form-control weight_{DT.id}" name="weight"
+                        id="">
+                        <!-- BEGIN: stt -->
+                        <option value="{J}" {J_SELECT}>{J}</option>
+                        <!-- END: stt -->
                     </select>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{DT.product_id}</td>
+                <td>{DT.screen}</td>
+                <td>{DT.operating}</td>
+                <td>{DT.front_camera}</td>
+                <td>{DT.rear_camera}</td>
+                <td>{DT.cpu}</td>
+                <td>{DT.ram}</td>
+                <td>{DT.internal_memory}</td>
+                <td>{DT.sim}</td>
+                <td>{DT.battery_capacity}</td>
                 <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
+                    <a href="{DT.url_edit}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
+                    <a href="{DT.url_delete}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
                         Xóa</a>
                 </td>
             </tr>
-            <!-- END: list_phone -->
-        </tbody>
-    </table>
-
-
-    <div style="color: red;">
-        <h1><strong>Thông tin Phụ kiện</strong></h1>
-    </div>
-    <table class="table table-striped table-bordered table-hover">
-        <tr class="text-center">
-            <th class="text-nowrap text-center">Thứ tự</th>
-            <th class="text-nowrap text-center">Tên Phụ kiện</th>
-            <th class="text-nowrap text-center">Mô tả</th>
-            <th class="text-center text-nowrap">Chức năng</th>
-        </tr>
-        </thead>
-        <tbody>
-            <!-- BEGIN: list_phone -->
-            <tr>
-                <td class="text-center">
-                    <select onchange="" class="form-control weight_{LIST.id}" name="weight" id="">
-                        <!-- BEGIN: stt_phone -->
-                        <option value=""></option>
-                        <!-- END: stt_phone -->
-                    </select>
-                </td>
-                <td></td>
-                <td></td>
-                <td class="text-center text-nowrap">
-                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Sửa</a>
-                    <a href="" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o"></i>
-                        Xóa</a>
-                </td>
-            </tr>
-            <!-- END: list_phone -->
+            <!-- END: phone_details -->
         </tbody>
     </table>
     <div style="text-align: center;">
-
+        {GP}
     </div>
-
 </form>
+<script>
+// ==== Xóa dữ liệu  ===== //
+$(document).ready(function() {
+    $('.delete').click(function() {
+        if (confirm("Bạn có chắc chắn muốn xóa?")) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 
+});
+// ================================ //
+
+// ==== Thay đổi số thứ tự ===== //
+function nv_change_weight(id) {
+    var new_weight = $('.weight_' + id).val();
+    $.ajax({
+        url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable +
+            '=phone_detail&change_weight=2&id=' + id + '&new_weight=' + new_weight,
+        success: function(result) {
+            if (result != "Error") {
+                location.reload();
+            }
+        }
+    })
+}
+// ================================ //
+</script>
 
 <!-- END: main -->
