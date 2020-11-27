@@ -49,7 +49,6 @@
                                         class="fa fa-search fa-lg"></em></button></span>
                         </div>
                         [HEAD_RIGHT]
-
                     </div>
                 </div>
             </div>
@@ -98,7 +97,6 @@
                             <!-- BEGIN: currenttime --><span class="current-time">{NV_CURRENTTIME}</span>
                             <!-- END: currenttime -->
                         </div> -->
-
                     </div>
             </div>
     </div>

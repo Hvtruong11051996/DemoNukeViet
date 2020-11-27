@@ -1,0 +1,2 @@
+[Thu, 26 Nov 2020 15:54:27 +0700] [shop_dienthoai.my] [127.0.0.1] [Warning(2): file_get_contents(C:/xampp/htdocs/shop_dienthoai/themes//modules/siteinfo\main.tpl): failed to open stream: No such file or directory] [FILE: /includes/xtemplate.class.php] [LINE: 1395]
+[Thu, 26 Nov 2020 16:05:45 +0700] [localhost] [::1] [Warning(2): require_once(C:/xampp/htdocs/shop_dienthoai/modules/users/language/en.php): failed to open stream: No such file or directory] [FILE: /install/index.php] [LINE: 32]
